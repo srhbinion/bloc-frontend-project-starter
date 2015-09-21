@@ -10,7 +10,7 @@
   "scripts": {
     "start": "node server.js"
   },
-  "author": "Sarah Binion",
+  "author": ["Sarah Binion", "Bloc"],
   "license": "ISC",
   "dependencies": {
     "hapi": "^7.5.0",

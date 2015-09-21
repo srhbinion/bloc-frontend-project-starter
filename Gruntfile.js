@@ -1,38 +1,35 @@
 module.exports = function(grunt) {
 
-    grunt.registerTask('default', 'Testing out Grunt logging and task callbacks', function() {
-       grunt.log.writeln('This is our first Grunt task!');
-    });
- 
-    grunt.registerTask('fun', 'This task is for fun only', function() {
-        grunt.log.writeln('This the *fun* Grunt task');
-    });
- 
-    grunt.registerTask('serious', 'This task is for serious stuff only', function() {
-        grunt.log.writeln('Wipe that smirk off your face; this is serious.');
+    //fun task
+    grunt.registerTask('default', 'Testing out Grunt logging and task callbacks', ['watch']);
+    //fun task
+    grunt.loadNpmTasks("grunt-contrib-watch");
+    //fun task
+    grunt.registerTask("serious", "This task is for serious stuff only", function() {
+        grunt.log.writeln("Wipe that smirk off your face; this is serious.");
     });
     
-    grunt.registerTask( 'default', [ 'clean', 'copy', 'hapi', 'watch'] );
+    grunt.registerTask( "default", [ "clean", "copy", "hapi", "watch"] );
 
-    grunt.registerTask( 'build', [ 'clean', 'copy' ] );
+    grunt.registerTask( "build", [ "clean", "copy" ] );
 
-    grunt.registerTask( 'run', [ 'hapi', 'watch' ]);
+    grunt.registerTask( "run", [ "hapi", "watch" ]);
 
     grunt.initConfig({
 
         watch: {
             hapi: {
                 files: [
-                    './app/assets/**/*.{png,jpg,jpeg,mp3}',
-                    './app/scripts/**/*.js',
-                    './app/styles/**/*.css',
-                    './app/pages/**/*.html',
-                    './app/templates/**/*.html',
-                    'Gruntfile.js'
+                    "./app/assets/**/*.{png,jpg,jpeg,mp3}",
+                    "./app/scripts/**/*.js",
+                    "./app/styles/**/*.css",
+                    "./app/pages/**/*.html",
+                    "./app/templates/**/*.html",
+                    "Gruntfile.js"
                 ],
                 tasks: [
-                    'clean',
-                    'copy'
+                    "clean",
+                    "copy"
                 ],
                 options: {
                     spawn: false
@@ -44,29 +41,29 @@ module.exports = function(grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    src: [ './assets/**/*.{png,jpg,jpeg,mp3}' ],
-                    dest: './dist',
-                    cwd: './app'
+                    src: [ "./assets/**/*.{png,jpg,jpeg,mp3}" ],
+                    dest: "./dist",
+                    cwd: "./app"
                 }, {
                     expand: true,
-                    src: [ './**/*.html' ],
-                    dest: './dist',
-                    cwd: './app/pages'
+                    src: [ "./**/*.html" ],
+                    dest: "./dist",
+                    cwd: "./app/pages"
                 }, {
                     expand: true,
-                    src: [ './**/*.css' ],
-                    dest: './dist/styles',
-                    cwd: './app/styles'
+                    src: [ "./**/*.css" ],
+                    dest: "./dist/styles",
+                    cwd: "./app/styles"
                 }, {
                     expand: true,
-                    src: [ './**/*.js' ],
-                    dest: './dist/scripts',
-                    cwd: './app/scripts'
+                    src: [ "./**/*.js" ],
+                    dest: "./dist/scripts",
+                    cwd: "./app/scripts"
                 }, {
                     expand: true,
-                    src: [ './**/*.html' ],
-                    dest: './dist/templates',
-                    cwd: './app/templates'
+                    src: [ "./**/*.html" ],
+                    dest: "./dist/templates",
+                    cwd: "./app/templates"
                 }]
             }
         },
@@ -74,20 +71,20 @@ module.exports = function(grunt) {
         hapi: {
             custom_options: {
                 options: {
-                    server: require('path').resolve('./server'),
+                    server: require("path").resolve("./server"),
                     bases: {
-                        '/dist': require('path').resolve('./dist/')
+                        "/dist": require("path").resolve("./dist/")
                     }
                 }
             }
         },
 
-        clean: ['./dist']
+        clean: ["./dist"]
     });
 
-    grunt.loadNpmTasks('grunt-contrib-watch');
-    grunt.loadNpmTasks('grunt-contrib-copy');
-    grunt.loadNpmTasks('grunt-contrib-clean');
-    grunt.loadNpmTasks('grunt-hapi');
+    grunt.loadNpmTasks("grunt-contrib-watch");
+    grunt.loadNpmTasks("grunt-contrib-copy");
+    grunt.loadNpmTasks("grunt-contrib-clean");
+    grunt.loadNpmTasks("grunt-hapi");
 
 };
